@@ -1,0 +1,69 @@
+Metadata-Version: 1.1
+Name: shootout
+Version: 0.2.3
+Summary: A generic idea discussion and rating app (Pyramid sample)
+Home-page: http://pylons-devel@googlegroups.com
+Author: Carlos de la Guardia, Lukasz Fidosz
+Author-email: cguardia@yahoo.com, virhilo@gmail.com
+License: BSD-derived (http://www.repoze.org/LICENSE.txt)
+Description: shootout
+        ========
+        
+        Shootout is a demo app for the Pyramid web framework.  The concepts
+        demonstrated in the code include:
+        
+        - Url dispatch mechanism.
+        
+        - Built-in authentication and authorization mechanism.
+        
+        - Usage of built-in sessioning machinery.
+        
+        - Integration with pyramid_simpleform for form handling.
+        
+        - SQLAlchemy based models and transaction management via pyramid_tm.
+        
+        Library Requirements
+        --------------------
+        
+        shootout requires a SQLite3 bindings.
+        
+        On a Debian system, these imply: build-essentials, libsqlite3-dev.
+        
+        Installing and Running
+        ----------------------
+        
+        Python 2.6 or 2.7 is required.
+        
+        - virtualenv --no-site-packages env
+        
+        - cd env
+        
+        - . bin/activate
+        
+        - git clone git@github.com:Pylons/shootout.git
+        
+        - cd shootout
+        
+        - python setup.py develop
+        
+        - initialize_shootout_db development.ini
+        
+        - pserve development.ini
+        
+        
+        
+        Next release
+        ============
+        
+        - Forked from repoze.shootout 0.6dev
+        
+Keywords: web wsgi bfg pyramid pylons example
+Platform: UNKNOWN
+Classifier: Framework :: Pylons
+Classifier: Framework :: BFG
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application

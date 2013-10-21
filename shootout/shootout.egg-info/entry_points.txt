@@ -1,0 +1,5 @@
+      [paste.app_factory]
+      main = shootout:main
+      [console_scripts]
+      initialize_shootout_db = shootout.scripts.initializedb:main
+      
