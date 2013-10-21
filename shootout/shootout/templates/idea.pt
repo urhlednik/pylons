@@ -21,6 +21,17 @@
     </p>
     <p>Hits: <b class="hits">${idea.hits}</b>.</p>
     <p>Misses: <b class="misses">${idea.misses}</b>.</p>
+    <p>Likes: <b class="likes">${likes}</b>.
+
+        <form action="${request.route_url('like_add')}" method="post">
+            <input name="_csrf" type="hidden" value="${request.session.get_csrf_token()}">
+            <input type="hidden" name="target" value="${idea.idea_id}" />
+            <input type="submit" class="submit" name="form.like" value="Like" style="margin-left: 0px; background-color: #3b5998 "/>
+        </form>
+
+
+</p>
+
     <p class="idea-text" tal:content="idea.text"></p>
     <div tal:condition="voted">
         <p>You already voted for this idea.</p>
@@ -57,10 +68,10 @@
                 </a>
                 <span class="hits">${comment.hits}</span> hits,
                 <span class="misses">${comment.misses}</span> misses.
+
             </li>
         </ul>
     </div>
 </tal:block>
 
 </html>
-

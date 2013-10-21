@@ -139,6 +139,17 @@ voted_users = Table('ideas_votes', Base.metadata,
     Column('user_id', Integer, ForeignKey('users.user_id'))
 )
 
+class Like(Base):
+    __tablename__ = 'likes'
+    like_id = Column(Integer, primary_key=True)
+    target_id = Column(Integer, ForeignKey('ideas.idea_id'))
+    author_id = Column(Integer, ForeignKey('users.user_id'))
+
+    @classmethod
+    def get_by_id(cls, idea_id):
+        query = DBSession.query(cls)
+        return query.filter(cls.target_id == idea_id).count()
+
 
 class Idea(Base):
     __tablename__ = 'ideas'

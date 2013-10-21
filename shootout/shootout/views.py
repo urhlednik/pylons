@@ -26,6 +26,7 @@ from .models import (
     User,
     Idea,
     Tag,
+    Like,
     )
 
 @view_config(permission='view', route_name='main',
@@ -183,6 +184,25 @@ def idea_add(request):
         'kind': kind,
     }
 
+@view_config(permission='post', route_name='like_add')
+def like_add(request):
+    post_data = request.POST
+    target = post_data.get('target')
+    session = DBSession()
+
+    if post_data.get('form.like'):
+        author_username = authenticated_userid(request)
+        author = User.get_by_username(author_username)
+
+        like = Like(
+            target_id=target,
+            author_id=author.user_id
+        )
+
+        session.add(like)
+	redirect_url = request.route_url('idea', idea_id=like.target_id)
+        return HTTPFound(location=redirect_url)
+
 
 @view_config(permission='view', route_name='user',
              renderer='templates/user.pt')
@@ -204,7 +224,7 @@ def user_view(request):
 def idea_view(request):
     idea_id = request.matchdict['idea_id']
     idea = Idea.get_by_id(idea_id)
-
+    likes = Like.get_by_id(idea_id)
     viewer_username = authenticated_userid(request)
     voted = idea.user_voted(viewer_username)
     login_form = login_form_view(request)
@@ -217,6 +237,7 @@ def idea_view(request):
         'voted': voted,
         'viewer_username': viewer_username,
         'idea': idea,
+	'likes': likes,
     }
 
 
